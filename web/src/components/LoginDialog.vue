@@ -12,17 +12,6 @@
         <div class="title" v-else>
           用户注册
           <el-tag v-text="regTxt"></el-tag>
-          <!-- <div class="info">
-              <el-tooltip
-                  effect="dark"
-                  :content="regTxt"
-                  raw-content
-                  placement="right">
-                <el-icon>
-                  <InfoFilled/>
-                </el-icon>
-              </el-tooltip>
-          </div> -->
         </div>
         <div class="close-icon">
           <el-icon @click="close">

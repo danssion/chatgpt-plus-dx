@@ -3,26 +3,13 @@
     <div class="menu-box">
       <el-menu
           mode="horizontal"
-          :ellipsis="false"
-      >
+          :ellipsis="false">
         <div class="menu-item">
-          <el-image :src="logo" alt="Geek-AI"/>
+          <el-image :src="logo" alt="HOP-AI"/>
           <div class="title">{{ title }}</div>
         </div>
         <div class="menu-item">
-          <a href="https://ai.r9it.com/docs/install/" target="_blank">
-            <el-button type="primary" round>
-              <i class="iconfont icon-book"></i>
-              <span>部署文档</span>
-            </el-button>
-          </a>
 
-          <a href="https://github.com/yangjian102621/chatgpt-plus" target="_blank">
-            <el-button type="success" round>
-              <i class="iconfont icon-github"></i>
-              <span>项目源码</span>
-            </el-button>
-          </a>
         </div>
       </el-menu>
     </div>
@@ -38,14 +25,14 @@
         <span>AI-MJ绘画</span>
       </el-button>
 
-      <el-button @click="router.push('/sd')" color="#4AE6DF" style="color:#424282" :dark="false">
-        <i class="iconfont icon-sd"></i>
-        <span>AI-SD绘画</span>
-      </el-button>
-      <el-button @click="router.push('/xmind')" color="#FFFD55" style="color:#424282" :dark="false">
-        <i class="iconfont icon-xmind"></i>
-        <span>思维导图</span>
-      </el-button>
+<!--      <el-button @click="router.push('/sd')" color="#4AE6DF" style="color:#424282" :dark="false">-->
+<!--        <i class="iconfont icon-sd"></i>-->
+<!--        <span>AI-SD绘画</span>-->
+<!--      </el-button>-->
+<!--      <el-button @click="router.push('/xmind')" color="#FFFD55" style="color:#424282" :dark="false">-->
+<!--        <i class="iconfont icon-xmind"></i>-->
+<!--        <span>思维导图</span>-->
+<!--      </el-button>-->
       <div id="animation-container"></div>
     </div>
 
