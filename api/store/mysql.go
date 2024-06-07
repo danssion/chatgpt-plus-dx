@@ -1,7 +1,7 @@
 package store
 
 import (
-	"chatplus/core/types"
+	"geekai/core/types"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"

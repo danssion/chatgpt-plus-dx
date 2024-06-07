@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"chatplus/core/types"
-	"chatplus/service"
-	"chatplus/utils/resp"
+	"geekai/core/types"
+	"geekai/service"
+	"geekai/utils/resp"
 	"github.com/gin-gonic/gin"
 )
 

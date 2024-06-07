@@ -1,13 +1,13 @@
 package admin
 
 import (
-	"chatplus/core"
-	"chatplus/core/types"
-	"chatplus/handler"
-	"chatplus/store/model"
-	"chatplus/store/vo"
-	"chatplus/utils"
-	"chatplus/utils/resp"
+	"geekai/core"
+	"geekai/core/types"
+	"geekai/handler"
+	"geekai/store/model"
+	"geekai/store/vo"
+	"geekai/utils"
+	"geekai/utils/resp"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -76,7 +76,7 @@ func (h *ApiKeyHandler) List(c *gin.Context) {
 	if t != "" {
 		session = session.Where("type", t)
 	}
-	
+
 	var items []model.ApiKey
 	var keys = make([]vo.ApiKey, 0)
 	res := session.Find(&items)

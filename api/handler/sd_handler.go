@@ -1,17 +1,17 @@
 package handler
 
 import (
-	"chatplus/core"
-	"chatplus/core/types"
-	"chatplus/service"
-	"chatplus/service/oss"
-	"chatplus/service/sd"
-	"chatplus/store"
-	"chatplus/store/model"
-	"chatplus/store/vo"
-	"chatplus/utils"
-	"chatplus/utils/resp"
 	"fmt"
+	"geekai/core"
+	"geekai/core/types"
+	"geekai/service"
+	"geekai/service/oss"
+	"geekai/service/sd"
+	"geekai/store"
+	"geekai/store/model"
+	"geekai/store/vo"
+	"geekai/utils"
+	"geekai/utils/resp"
 	"net/http"
 	"time"
 

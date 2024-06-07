@@ -1,8 +1,8 @@
 package sms
 
 import (
-	"chatplus/core/types"
 	"fmt"
+	"geekai/core/types"
 	"github.com/aliyun/alibaba-cloud-sdk-go/services/dysmsapi"
 )
 

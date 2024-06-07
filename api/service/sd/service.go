@@ -1,13 +1,13 @@
 package sd
 
 import (
-	"chatplus/core/types"
-	"chatplus/service"
-	"chatplus/service/oss"
-	"chatplus/store"
-	"chatplus/store/model"
-	"chatplus/utils"
 	"fmt"
+	"geekai/core/types"
+	"geekai/service"
+	"geekai/service/oss"
+	"geekai/store"
+	"geekai/store/model"
+	"geekai/utils"
 	"strings"
 	"time"
 

@@ -1,14 +1,14 @@
 package admin
 
 import (
-	"chatplus/core"
-	"chatplus/core/types"
-	"chatplus/handler"
-	"chatplus/store/model"
-	"chatplus/store/vo"
-	"chatplus/utils"
-	"chatplus/utils/resp"
 	"fmt"
+	"geekai/core"
+	"geekai/core/types"
+	"geekai/handler"
+	"geekai/store/model"
+	"geekai/store/vo"
+	"geekai/utils"
+	"geekai/utils/resp"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -75,6 +75,7 @@ func (h *UserHandler) Save(c *gin.Context) {
 		resp.ERROR(c, types.InvalidArgs)
 		return
 	}
+
 	var user = model.User{}
 	var res *gorm.DB
 	var userVo vo.User

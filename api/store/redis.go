@@ -1,8 +1,8 @@
 package store
 
 import (
-	"chatplus/core/types"
 	"context"
+	"geekai/core/types"
 	"github.com/go-redis/redis/v8"
 )
 

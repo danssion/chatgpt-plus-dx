@@ -1,7 +1,7 @@
 package oss
 
 import (
-	"chatplus/core/types"
+	"geekai/core/types"
 	"strings"
 )
 

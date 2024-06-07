@@ -1,9 +1,9 @@
 package payment
 
 import (
-	"chatplus/core/types"
-	logger2 "chatplus/logger"
 	"fmt"
+	"geekai/core/types"
+	logger2 "geekai/logger"
 	"github.com/smartwalle/alipay/v3"
 	"log"
 	"net/url"

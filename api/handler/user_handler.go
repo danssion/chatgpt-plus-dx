@@ -1,13 +1,13 @@
 package handler
 
 import (
-	"chatplus/core"
-	"chatplus/core/types"
-	"chatplus/store/model"
-	"chatplus/store/vo"
-	"chatplus/utils"
-	"chatplus/utils/resp"
 	"fmt"
+	"geekai/core"
+	"geekai/core/types"
+	"geekai/store/model"
+	"geekai/store/vo"
+	"geekai/utils"
+	"geekai/utils/resp"
 	"strings"
 	"time"
 
@@ -30,7 +30,11 @@ func NewUserHandler(
 	db *gorm.DB,
 	searcher *xdb.Searcher,
 	client *redis.Client) *UserHandler {
-	return &UserHandler{BaseHandler: BaseHandler{DB: db, App: app}, searcher: searcher, redis: client}
+	return &UserHandler{
+		BaseHandler: BaseHandler{DB: db, App: app},
+		searcher:    searcher,
+		redis:       client,
+	}
 }
 
 // Register user register
@@ -55,7 +59,7 @@ func (h *UserHandler) Register(c *gin.Context) {
 
 	// 检查验证码
 	var key string
-	if data.RegWay == "email" || data.RegWay == "mobile" || data.Code != "" {
+	if data.RegWay == "email" || data.RegWay == "mobile" {
 		key = CodeStorePrefix + data.Username
 		code, err := h.redis.Get(c, key).Result()
 		if err != nil || code != data.Code {
@@ -224,18 +228,18 @@ func (h *UserHandler) Login(c *gin.Context) {
 
 // Logout 注 销
 func (h *UserHandler) Logout(c *gin.Context) {
-	sessionId := c.GetHeader(types.ChatTokenHeader)
+	//sessionId := c.GetHeader(types.ChatTokenHeader)
 	key := h.GetUserKey(c)
 	if _, err := h.redis.Del(c, key).Result(); err != nil {
 		logger.Error("error with delete session: ", err)
 	}
 	// 删除 websocket 会话列表
-	h.App.ChatSession.Delete(sessionId)
+	//h.App.ChatSession.Delete(sessionId)
 	// 关闭 socket 连接
-	client := h.App.ChatClients.Get(sessionId)
-	if client != nil {
-		client.Close()
-	}
+	//client := h.App.ChatClients.Get(sessionId)
+	//if client != nil {
+	//	client.Close()
+	//}
 	resp.SUCCESS(c)
 }
 

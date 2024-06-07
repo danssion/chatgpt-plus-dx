@@ -72,7 +72,7 @@
           </template>
         </v3-waterfall>
 
-        <v3-waterfall v-if="imgType === 'dall'"
+        <v3-waterfall v-else-if="imgType === 'dall'"
                       id="waterfall"
                       :list="data['dall']"
                       srcKey="img_thumb"
@@ -338,7 +338,6 @@ const getNext = () => {
   loading.value = true
   page.value = page.value + 1
   let url = ""
-  console.log(imgType.value)
   switch (imgType.value) {
     case "mj":
       url = "/api/mj/imgWall"

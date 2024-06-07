@@ -1,6 +1,6 @@
 package sd
 
-import logger2 "chatplus/logger"
+import logger2 "geekai/logger"
 
 var logger = logger2.GetLogger()
 

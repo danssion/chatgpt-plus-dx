@@ -1,9 +1,9 @@
 package service
 
 import (
-	"chatplus/core/types"
 	"errors"
 	"fmt"
+	"geekai/core/types"
 	"github.com/imroc/req/v3"
 	"time"
 )

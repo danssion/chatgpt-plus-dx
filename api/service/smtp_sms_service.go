@@ -2,9 +2,9 @@ package service
 
 import (
 	"bytes"
-	"chatplus/core/types"
 	"crypto/tls"
 	"fmt"
+	"geekai/core/types"
 	"mime"
 	"net/smtp"
 	"net/textproto"

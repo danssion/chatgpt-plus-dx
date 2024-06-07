@@ -1,11 +1,11 @@
 package sd
 
 import (
-	"chatplus/core/types"
-	"chatplus/service/oss"
-	"chatplus/store"
-	"chatplus/store/model"
 	"fmt"
+	"geekai/core/types"
+	"geekai/service/oss"
+	"geekai/store"
+	"geekai/store/model"
 	"time"
 
 	"github.com/go-redis/redis/v8"

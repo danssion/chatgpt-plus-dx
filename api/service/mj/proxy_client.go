@@ -1,11 +1,11 @@
 package mj
 
 import (
-	"chatplus/core/types"
-	"chatplus/utils"
 	"encoding/base64"
 	"errors"
 	"fmt"
+	"geekai/core/types"
+	"geekai/utils"
 	"github.com/imroc/req/v3"
 	"io"
 )

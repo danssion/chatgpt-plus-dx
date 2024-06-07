@@ -2,13 +2,13 @@ package chatimpl
 
 import (
 	"bufio"
-	"chatplus/core/types"
-	"chatplus/store/model"
-	"chatplus/store/vo"
-	"chatplus/utils"
 	"context"
 	"encoding/json"
 	"fmt"
+	"geekai/core/types"
+	"geekai/store/model"
+	"geekai/store/vo"
+	"geekai/utils"
 	"html/template"
 	"io"
 	"strings"

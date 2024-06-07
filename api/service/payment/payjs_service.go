@@ -1,12 +1,12 @@
 package payment
 
 import (
-	"chatplus/core/types"
-	"chatplus/utils"
 	"crypto/md5"
 	"encoding/hex"
 	"errors"
 	"fmt"
+	"geekai/core/types"
+	"geekai/utils"
 	"io"
 	"net/http"
 	"net/url"

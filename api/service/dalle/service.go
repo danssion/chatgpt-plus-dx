@@ -1,16 +1,16 @@
 package dalle
 
 import (
-	"chatplus/core/types"
-	logger2 "chatplus/logger"
-	"chatplus/service"
-	"chatplus/service/oss"
-	"chatplus/service/sd"
-	"chatplus/store"
-	"chatplus/store/model"
-	"chatplus/utils"
 	"errors"
 	"fmt"
+	"geekai/core/types"
+	logger2 "geekai/logger"
+	"geekai/service"
+	"geekai/service/oss"
+	"geekai/service/sd"
+	"geekai/store"
+	"geekai/store/model"
+	"geekai/utils"
 	"github.com/go-redis/redis/v8"
 	"time"
 
@@ -263,7 +263,7 @@ func (s *Service) CheckTaskStatus() {
 	go func() {
 		logger.Info("Running Stable-Diffusion task status checking ...")
 		for {
-			var jobs []model.SdJob
+			var jobs []model.DallJob
 			res := s.db.Where("progress < ?", 100).Find(&jobs)
 			if res.Error != nil {
 				time.Sleep(5 * time.Second)
@@ -287,7 +287,7 @@ func (s *Service) CheckTaskStatus() {
 							Balance:   user.Power + job.Power,
 							Mark:      types.PowerAdd,
 							Model:     "dall-e-3",
-							Remark:    fmt.Sprintf("任务失败，退回算力。任务ID：%s", job.TaskId),
+							Remark:    fmt.Sprintf("任务失败，退回算力。任务ID：%d", job.Id),
 							CreatedAt: time.Now(),
 						})
 					}

@@ -2,9 +2,9 @@ package core
 
 import (
 	"bytes"
-	"chatplus/core/types"
-	logger2 "chatplus/logger"
-	"chatplus/utils"
+	"geekai/core/types"
+	logger2 "geekai/logger"
+	"geekai/utils"
 	"os"
 
 	"github.com/BurntSushi/toml"

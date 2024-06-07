@@ -1,16 +1,16 @@
 package handler
 
 import (
-	"chatplus/core"
-	"chatplus/core/types"
-	"chatplus/service"
-	"chatplus/service/payment"
-	"chatplus/store/model"
-	"chatplus/utils"
-	"chatplus/utils/resp"
 	"embed"
 	"encoding/base64"
 	"fmt"
+	"geekai/core"
+	"geekai/core/types"
+	"geekai/service"
+	"geekai/service/payment"
+	"geekai/store/model"
+	"geekai/utils"
+	"geekai/utils/resp"
 	"github.com/shopspring/decimal"
 	"math"
 	"net/http"

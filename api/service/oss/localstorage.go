@@ -1,10 +1,10 @@
 package oss
 
 import (
-	"chatplus/core/types"
-	"chatplus/utils"
 	"encoding/base64"
 	"fmt"
+	"geekai/core/types"
+	"geekai/utils"
 	"github.com/gin-gonic/gin"
 	"net/url"
 	"os"

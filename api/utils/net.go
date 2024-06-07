@@ -1,9 +1,9 @@
 package utils
 
 import (
-	"chatplus/core/types"
-	logger2 "chatplus/logger"
 	"encoding/json"
+	"geekai/core/types"
+	logger2 "geekai/logger"
 	"io"
 	"net/http"
 	"net/url"

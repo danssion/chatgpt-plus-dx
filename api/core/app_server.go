@@ -2,12 +2,12 @@ package core
 
 import (
 	"bytes"
-	"chatplus/core/types"
-	"chatplus/store/model"
-	"chatplus/utils"
-	"chatplus/utils/resp"
 	"context"
 	"fmt"
+	"geekai/core/types"
+	"geekai/store/model"
+	"geekai/utils"
+	"geekai/utils/resp"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v8"
 	"github.com/golang-jwt/jwt/v5"
@@ -200,10 +200,13 @@ func authorizeMiddleware(s *AppServer, client *redis.Client) gin.HandlerFunc {
 
 func needLogin(c *gin.Context) bool {
 	if c.Request.URL.Path == "/api/user/login" ||
+		c.Request.URL.Path == "/api/user/logout" ||
 		c.Request.URL.Path == "/api/user/resetPass" ||
 		c.Request.URL.Path == "/api/admin/login" ||
+		c.Request.URL.Path == "/api/admin/logout" ||
 		c.Request.URL.Path == "/api/admin/login/captcha" ||
 		c.Request.URL.Path == "/api/user/register" ||
+		c.Request.URL.Path == "/api/user/session" ||
 		c.Request.URL.Path == "/api/chat/history" ||
 		c.Request.URL.Path == "/api/chat/detail" ||
 		c.Request.URL.Path == "/api/chat/list" ||

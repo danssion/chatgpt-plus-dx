@@ -1,9 +1,9 @@
 package sms
 
 import (
-	"chatplus/core/types"
-	"chatplus/utils"
 	"fmt"
+	"geekai/core/types"
+	"geekai/utils"
 	"io"
 	"net/http"
 	"net/url"

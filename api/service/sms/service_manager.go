@@ -1,8 +1,8 @@
 package sms
 
 import (
-	"chatplus/core/types"
-	logger2 "chatplus/logger"
+	"geekai/core/types"
+	logger2 "geekai/logger"
 	"strings"
 )
 

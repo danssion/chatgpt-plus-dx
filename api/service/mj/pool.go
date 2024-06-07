@@ -1,13 +1,13 @@
 package mj
 
 import (
-	"chatplus/core/types"
-	logger2 "chatplus/logger"
-	"chatplus/service/oss"
-	"chatplus/service/sd"
-	"chatplus/store"
-	"chatplus/store/model"
 	"fmt"
+	"geekai/core/types"
+	logger2 "geekai/logger"
+	"geekai/service/oss"
+	"geekai/service/sd"
+	"geekai/store"
+	"geekai/store/model"
 	"github.com/go-redis/redis/v8"
 	"time"
 

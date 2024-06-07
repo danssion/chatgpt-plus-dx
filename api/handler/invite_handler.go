@@ -1,12 +1,12 @@
 package handler
 
 import (
-	"chatplus/core"
-	"chatplus/core/types"
-	"chatplus/store/model"
-	"chatplus/store/vo"
-	"chatplus/utils"
-	"chatplus/utils/resp"
+	"geekai/core"
+	"geekai/core/types"
+	"geekai/store/model"
+	"geekai/store/vo"
+	"geekai/utils"
+	"geekai/utils/resp"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"strings"

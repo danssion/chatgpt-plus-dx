@@ -1,9 +1,9 @@
 package admin
 
 import (
-	"chatplus/core"
-	"chatplus/handler"
-	"chatplus/utils/resp"
+	"geekai/core"
+	"geekai/handler"
+	"geekai/utils/resp"
 	"github.com/gin-gonic/gin"
 	"github.com/mojocn/base64Captcha"
 )

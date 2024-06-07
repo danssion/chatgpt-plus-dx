@@ -1,13 +1,13 @@
 package handler
 
 import (
-	"chatplus/core"
-	"chatplus/core/types"
-	logger2 "chatplus/logger"
-	"chatplus/store/model"
-	"chatplus/utils"
 	"errors"
 	"fmt"
+	"geekai/core"
+	"geekai/core/types"
+	logger2 "geekai/logger"
+	"geekai/store/model"
+	"geekai/utils"
 	"gorm.io/gorm"
 	"strings"
 

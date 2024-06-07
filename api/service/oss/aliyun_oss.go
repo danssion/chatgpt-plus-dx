@@ -2,10 +2,10 @@ package oss
 
 import (
 	"bytes"
-	"chatplus/core/types"
-	"chatplus/utils"
 	"encoding/base64"
 	"fmt"
+	"geekai/core/types"
+	"geekai/utils"
 	"net/url"
 	"path/filepath"
 	"strings"

@@ -1,7 +1,7 @@
 package resp
 
 import (
-	"chatplus/core/types"
+	"geekai/core/types"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

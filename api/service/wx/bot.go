@@ -1,8 +1,8 @@
 package wx
 
 import (
-	logger2 "chatplus/logger"
-	"chatplus/store/model"
+	logger2 "geekai/logger"
+	"geekai/store/model"
 	"github.com/eatmoreapple/openwechat"
 	"github.com/skip2/go-qrcode"
 	"gorm.io/gorm"

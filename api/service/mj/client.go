@@ -1,6 +1,6 @@
 package mj
 
-import "chatplus/core/types"
+import "geekai/core/types"
 
 type Client interface {
 	Imagine(task types.MjTask) (ImageRes, error)

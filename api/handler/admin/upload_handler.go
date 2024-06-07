@@ -1,11 +1,11 @@
 package admin
 
 import (
-	"chatplus/core"
-	"chatplus/handler"
-	"chatplus/service/oss"
-	"chatplus/store/model"
-	"chatplus/utils/resp"
+	"geekai/core"
+	"geekai/handler"
+	"geekai/service/oss"
+	"geekai/store/model"
+	"geekai/utils/resp"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"time"

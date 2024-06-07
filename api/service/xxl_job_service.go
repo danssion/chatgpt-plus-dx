@@ -1,12 +1,12 @@
 package service
 
 import (
-	"chatplus/core/types"
-	logger2 "chatplus/logger"
-	"chatplus/store/model"
-	"chatplus/utils"
 	"context"
 	"fmt"
+	"geekai/core/types"
+	logger2 "geekai/logger"
+	"geekai/store/model"
+	"geekai/utils"
 	"github.com/xxl-job/xxl-job-executor-go"
 	"gorm.io/gorm"
 	"time"

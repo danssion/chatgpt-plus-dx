@@ -1,11 +1,11 @@
 package chatimpl
 
 import (
-	"chatplus/core/types"
-	"chatplus/store/model"
-	"chatplus/store/vo"
-	"chatplus/utils"
-	"chatplus/utils/resp"
+	"geekai/core/types"
+	"geekai/store/model"
+	"geekai/store/vo"
+	"geekai/utils"
+	"geekai/utils/resp"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -187,12 +187,20 @@ func (h *ChatHandler) Detail(c *gin.Context) {
 		return
 	}
 
+	// 填充角色名称
+	var role model.ChatRole
+	res = h.DB.Where("id", chatItem.RoleId).First(&role)
+	if res.Error != nil {
+		resp.ERROR(c, "Role not found")
+		return
+	}
+
 	var chatItemVo vo.ChatItem
 	err := utils.CopyObject(chatItem, &chatItemVo)
 	if err != nil {
 		resp.ERROR(c, err.Error())
 		return
 	}
-
+	chatItemVo.RoleName = role.Name
 	resp.SUCCESS(c, chatItemVo)
 }

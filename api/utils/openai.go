@@ -1,9 +1,9 @@
 package utils
 
 import (
-	"chatplus/core/types"
-	"chatplus/store/model"
 	"fmt"
+	"geekai/core/types"
+	"geekai/store/model"
 	"github.com/imroc/req/v3"
 	"github.com/pkoukk/tiktoken-go"
 	"gorm.io/gorm"
