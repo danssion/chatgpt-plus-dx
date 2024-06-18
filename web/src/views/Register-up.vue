@@ -1,0 +1,431 @@
+<template>
+  <div>
+    <div class="bg"></div>
+    <div class="register-page">
+      <div class="page-inner">
+        <div class="contain" v-if="enableRegister">
+          <div class="logo">
+            <el-image :src="logo" fit="cover"/>
+          </div>
+
+          <div class="header">
+            <div class="title" v-if="login">用户登录</div>
+            <div class="title" v-else>
+              {{title}}
+              <el-tag v-text="regTxt"></el-tag>
+            </div>
+            <div class="close-icon">
+              <el-icon @click="close">
+                <Close/>
+              </el-icon>
+            </div>
+          </div>
+        </div>
+
+        <div class="register-box" v-else>
+          <el-form :model="data" class="form" v-if="enableRegister">
+            <el-tabs v-model="activeName" class="demo-tabs">
+              <el-tab-pane label="手机注册" name="mobile" v-if="enableMobile">
+                <div class="block">
+                  <el-input placeholder="手机号码"
+                            size="large"
+                            v-model="data.username"
+                            maxlength="11"
+                            autocomplete="off">
+                    <template #prefix>
+                      <el-icon>
+                        <Iphone/>
+                      </el-icon>
+                    </template>
+                  </el-input>
+                </div>
+                <div class="block">
+                  <el-row :gutter="10">
+                    <el-col :span="12">
+                      <el-input placeholder="验证码"
+                                size="large" maxlength="30"
+                                v-model="data.code"
+                                autocomplete="off">
+                        <template #prefix>
+                          <el-icon>
+                            <Checked/>
+                          </el-icon>
+                        </template>
+                      </el-input>
+                    </el-col>
+                    <el-col :span="12">
+                      <send-msg size="large" :receiver="data.username"/>
+                    </el-col>
+                  </el-row>
+                </div>
+              </el-tab-pane>
+              <el-tab-pane label="邮箱注册" name="email" v-if="enableEmail">
+                <div class="block">
+                  <el-input placeholder="邮箱地址"
+                            size="large"
+                            v-model="data.username"
+                            autocomplete="off">
+                    <template #prefix>
+                      <el-icon>
+                        <Message/>
+                      </el-icon>
+                    </template>
+                  </el-input>
+                </div>
+                <div class="block">
+                  <el-row :gutter="10">
+                    <el-col :span="12">
+                      <el-input placeholder="验证码"
+                                size="large" maxlength="30"
+                                v-model="data.code"
+                                autocomplete="off">
+                        <template #prefix>
+                          <el-icon>
+                            <Checked/>
+                          </el-icon>
+                        </template>
+                      </el-input>
+                    </el-col>
+                    <el-col :span="12">
+                      <send-msg size="large" :receiver="data.username"/>
+                    </el-col>
+                  </el-row>
+                </div>
+              </el-tab-pane>
+              <el-tab-pane label="用户名注册" name="username" v-if="enableUser">
+                <div class="block">
+                  <el-input placeholder="用户名"
+                            size="large"
+                            v-model="data.username"
+                            autocomplete="off">
+                    <template #prefix>
+                      <el-icon>
+                        <Memo/>
+                      </el-icon>
+                    </template>
+                  </el-input>
+                </div>
+              </el-tab-pane>
+            </el-tabs>
+
+            <div class="block">
+              <el-input placeholder="请输入密码(8-16位)"
+                        maxlength="16" size="large"
+                        v-model="data.password" show-password
+                        autocomplete="off">
+                <template #prefix>
+                  <el-icon>
+                    <Lock/>
+                  </el-icon>
+                </template>
+              </el-input>
+            </div>
+
+            <div class="block">
+              <el-input placeholder="重复密码(8-16位)"
+                        size="large" maxlength="16" v-model="data.repass" show-password
+                        autocomplete="off">
+                <template #prefix>
+                  <el-icon>
+                    <Lock/>
+                  </el-icon>
+                </template>
+              </el-input>
+            </div>
+
+            <div class="block">
+              <el-input placeholder="邀请码(可选)"
+                        size="large"
+                        v-model="data.invite_code"
+                        autocomplete="off">
+                <template #prefix>
+                  <el-icon>
+                    <Notebook/>
+                  </el-icon>
+                </template>
+              </el-input>
+            </div>
+
+            <el-row class="btn-row" :gutter="20">
+              <el-col :span="12">
+                <el-button class="login-btn" type="primary" size="large" @click="submitRegister">注册</el-button>
+              </el-col>
+              <el-col :span="12">
+                <div class="text">
+                  已有账号？
+                  <el-tag @click="login = true">登录</el-tag>
+                </div>
+              </el-col>
+
+            </el-row>
+          </el-form>
+
+        <div class="tip-result" v-else>
+          <el-result icon="error" title="注册功能已关闭">
+            <template #sub-title>
+              <p>抱歉，系统已关闭注册功能，请联系管理员添加账号！</p>
+              <div class="wechat-card">
+                <el-image :src="wxImg"/>
+              </div>
+            </template>
+          </el-result>
+        </div>
+
+        <footer class="footer">
+          <footer-bar/>
+        </footer>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import {computed, ref} from "vue"
+import {httpGet, httpPost} from "@/utils/http";
+import {ElMessage} from "element-plus";
+import {setUserToken} from "@/store/session";
+import {validateEmail, validateMobile} from "@/utils/validate";
+import {Checked, Close, Iphone, Lock, Message, Notebook, Memo } from "@element-plus/icons-vue";
+import SendMsg from "@/components/SendMsg.vue";
+import {arrayContains} from "@/utils/libs";
+
+// eslint-disable-next-line no-undef
+const props = defineProps({
+  show: Boolean,
+});
+const showDialog = computed(() => {
+  return props.show
+})
+
+const login = ref(true)
+const data = ref({
+  username: "",
+  password: "",
+  repass: "",
+  code: "",
+  invite_code: ""
+})
+const enableMobile = ref(false)
+const enableEmail = ref(false)
+const enableUser = ref(false)
+const enableRegister = ref(false)
+const activeName = ref("mobile")
+const wxImg = ref("/images/wx.png")
+// eslint-disable-next-line no-undef
+const emits = defineEmits(['hide', 'success']);
+const regTxt = ref(process.env.VUE_APP_REG_TEXT);
+
+httpGet("/api/config/get?key=system").then(res => {
+  if (res.data) {
+    const registerWays = res.data['register_ways']
+    if (arrayContains(registerWays, "mobile")) {
+      enableMobile.value = true
+    }
+    if (arrayContains(registerWays, "email")) {
+      enableEmail.value = true
+    }
+    if (arrayContains(registerWays, "username")) {
+      enableUser.value = true
+    }
+    // 是否启用注册
+    enableRegister.value = res.data['enabled_register']
+    // 使用后台上传的客服微信二维码
+    if (res.data['wechat_card_url'] !== '') {
+      wxImg.value = res.data['wechat_card_url']
+    }
+  }
+}).catch(e => {
+  ElMessage.error("获取系统配置失败：" + e.message)
+})
+
+// 登录操作
+const submitLogin = () => {
+  if (data.value.username === '') {
+    return ElMessage.error('请输入用户名');
+  }
+  if (data.value.password === '') {
+    return ElMessage.error('请输入密码');
+  }
+
+  httpPost('/api/user/login', data.value).then((res) => {
+    setUserToken(res.data)
+    ElMessage.success("登录成功！")
+    emits("hide")
+    emits('success')
+  }).catch((e) => {
+    ElMessage.error('登录失败，' + e.message)
+  })
+}
+
+// 注册操作
+const submitRegister = () => {
+  if (data.value.username === '') {
+    return ElMessage.error('请输入用户名');
+  }
+
+  if (activeName.value === 'mobile' && !validateMobile(data.value.username)) {
+    return ElMessage.error('请输入合法的手机号');
+  }
+
+  if (activeName.value === 'email' && !validateEmail(data.value.username)) {
+    return ElMessage.error('请输入合法的邮箱地址');
+  }
+
+  if (data.value.password.length < 8) {
+    return ElMessage.error('密码的长度为8-16个字符');
+  }
+  if (data.value.repass !== data.value.password) {
+    return ElMessage.error('两次输入密码不一致');
+  }
+
+  if ((activeName.value === 'mobile' || activeName.value === 'email') && data.value.code === '') {
+    return ElMessage.error('请输入验证码');
+  }
+  data.value.reg_way = activeName.value
+  httpPost('/api/user/register', data.value).then((res) => {
+    setUserToken(res.data)
+    ElMessage.success({
+      "message": "注册成功!",
+      onClose: () => {
+        emits("hide")
+        emits('success')
+      },
+      duration: 1000
+    })
+  }).catch((e) => {
+    ElMessage.error('注册失败，' + e.message)
+  })
+}
+
+const close = function () {
+  emits('hide', false);
+}
+</script>
+
+<style lang="stylus" scoped>
+.bg {
+  position fixed
+  left 0
+  right 0
+  top 0
+  bottom 0
+  background-color #091519
+  background-image url("~@/assets/img/reg-bg.jpg")
+  background-size cover
+  background-position center
+  background-repeat no-repeat
+  //filter: blur(10px); /* 调整模糊程度，可以根据需要修改值 */
+}
+
+.register-page {
+  display flex
+  justify-content center
+
+  .page-inner {
+    max-width 450px
+    min-width 360px
+    height 100vh
+    display flex
+    justify-content center
+    align-items center
+
+    .contain {
+      padding 20px 40px 20px 40px;
+      width 100%
+      color #ffffff
+      border-radius 10px;
+      z-index 10
+      background-color rgba(255, 255, 255, 0.3)
+
+      .logo {
+        text-align center
+
+        .el-image {
+          width 120px;
+        }
+      }
+
+      .header {
+        width 100%
+        margin-bottom 24px
+        font-size 24px
+        color $white_v1
+        letter-space 2px
+        text-align center
+      }
+
+      .content {
+        width 100%
+        height: auto
+        border-radius 3px
+
+        .block {
+          margin-bottom 16px
+
+          .el-input__inner {
+            border 1px solid $gray-v6 !important
+
+            .el-icon-user, .el-icon-lock {
+              font-size 20px
+            }
+          }
+        }
+
+        .btn-row {
+          padding-top 10px;
+
+          .login-btn {
+            width 100%
+            font-size 16px
+            letter-spacing 2px
+          }
+        }
+
+        .text-line {
+          justify-content center
+          padding-top 10px;
+          font-size 14px;
+        }
+      }
+    }
+
+
+    .tip-result {
+      z-index 10
+
+      .wechat-card {
+        padding 20px
+      }
+    }
+
+    .footer {
+      color #ffffff;
+
+      .container {
+        padding 20px;
+      }
+    }
+
+  }
+
+}
+</style>
+
+<style lang="stylus">
+.register-page {
+  .el-result {
+
+    border-radius 10px;
+    background-color rgba(14, 25, 30, 0.6)
+    border 1px solid #666
+
+    .el-result__title p {
+      color #ffffff
+    }
+
+    .el-result__subtitle p {
+      color #c1c1c1
+    }
+  }
+}
+</style>
