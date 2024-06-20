@@ -5,60 +5,30 @@
       <el-tab-pane label="系统配置" name="basic">
         <div class="container">
           <el-form :model="system" label-width="150px" label-position="right" ref="systemFormRef" :rules="rules">
-
             <el-tabs type="border-card">
               <el-tab-pane label="基础配置">
-
-            <el-form-item label="网站标题" prop="title">
-              <el-input v-model="system['title']"/>
-            </el-form-item>
-            <el-form-item label="控制台标题" prop="admin_title">
-              <el-input v-model="system['admin_title']"/>
-            </el-form-item>
-            <el-form-item label="网站 LOGO" prop="logo">
-              <el-input v-model="system['logo']" placeholder="网站LOGO图片">
-                <template #append>
-                  <el-upload
-                      :auto-upload="true"
-                      :show-file-list="false"
-                      @click="beforeUpload('logo')"
-                      :http-request="uploadImg"
-                  >
-                    <el-icon class="uploader-icon">
-                      <UploadFilled/>
-                    </el-icon>
-                  </el-upload>
-                </template>
-              </el-input>
-            </el-form-item>
-            <el-form-item label="注册赠送算力" prop="init_power">
-              <el-input v-model.number="system['init_power']" placeholder="新用户注册赠送算力"/>
-            </el-form-item>
-            <el-form-item label="邀请赠送算力" prop="invite_power">
-              <el-input v-model.number="system['invite_power']" placeholder="邀请新用户注册赠送算力"/>
-            </el-form-item>
-            <el-form-item label="VIP每月赠送算力" prop="vip_month_power">
-              <el-input v-model.number="system['vip_month_power']" placeholder="VIP用户每月赠送算力"/>
-            </el-form-item>
-            <el-form-item label="每日赠送算力" prop="daily_power">
-              <div class="tip-input-line">
-                <el-input v-model.number="system['daily_power']" placeholder="默认值0"/>
-                <div class="tip">
-                  如果设置0表示不赠送，用户享受完免费算力额度之后就不能再发起对话了。如果设置为N，则系统每天将算力值小于N的用户自动补充到N。注意，此功能要配合XXL-JOB启用。
-                </div>
-              </div>
-            </el-form-item>
-            <el-form-item label="邮箱注册赠送算力" prop="email_init_power">
-              <el-input v-model.number="system['email_init_power']" placeholder="新用户邮箱注册赠送算力"/>
-            </el-form-item>
-            <el-form-item label="手机号注册赠送算力" prop="phone_init_power">
-              <el-input v-model.number="system['phone_init_power']" placeholder="新用户手机号注册赠送算力"/>
-            </el-form-item>
-            <el-form-item label="MJ绘图算力" prop="mj_power">
-              <div class="tip-input">
-                <el-input v-model.number="system['mj_power']" placeholder=""/>
-                <div class="info">
-
+                <el-form-item label="网站标题" prop="title">
+                  <el-input v-model="system['title']"/>
+                </el-form-item>
+                <el-form-item label="控制台标题" prop="admin_title">
+                  <el-input v-model="system['admin_title']"/>
+                </el-form-item>
+                <el-form-item label="网站 LOGO" prop="logo">
+                  <el-input v-model="system['logo']" placeholder="网站LOGO图片">
+                    <template #append>
+                      <el-upload
+                          :auto-upload="true"
+                          :show-file-list="false"
+                          @click="beforeUpload('logo')"
+                          :http-request="uploadImg"
+                      >
+                        <el-icon class="uploader-icon">
+                          <UploadFilled/>
+                        </el-icon>
+                      </el-upload>
+                    </template>
+                  </el-input>
+                </el-form-item>
 
                 <el-form-item label="开放注册" prop="enabled_register">
                   <el-switch v-model="system['enabled_register']"/>
@@ -172,6 +142,12 @@
                 </el-form-item>
                 <el-form-item label="VIP每月赠送算力" prop="vip_month_power">
                   <el-input v-model.number="system['vip_month_power']" placeholder="VIP用户每月赠送算力"/>
+                </el-form-item>
+                <el-form-item label="邮箱注册赠送算力" prop="email_init_power">
+                  <el-input v-model.number="system['email_init_power']" placeholder="新用户邮箱注册赠送算力"/>
+                </el-form-item>
+                <el-form-item label="手机号注册赠送算力" prop="phone_init_power">
+                  <el-input v-model.number="system['phone_init_power']" placeholder="新用户手机号注册赠送算力"/>
                 </el-form-item>
                 <el-form-item label="每日赠送算力" prop="daily_power">
                   <div class="tip-input-line">
