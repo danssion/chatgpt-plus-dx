@@ -1,9 +1,3 @@
-// * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// * Copyright 2023 The Geek-AI Authors. All rights reserved.
-// * Use of this source code is governed by a Apache-2.0 license
-// * that can be found in the LICENSE file.
-// * @Author yangjian102621@163.com
-// * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 import {createRouter, createWebHistory} from "vue-router";
 
@@ -105,7 +99,7 @@ const routes = [
     {
         path: '/admin/login',
         name: 'admin-login',
-        meta: {title: 'Geek-AI 控制台登录'},
+        meta: {title: 'AI-HOP 控制台登录'},
         component: () => import('@/views/admin/Login.vue'),
     },
     {
@@ -113,7 +107,7 @@ const routes = [
         path: '/admin',
         redirect: '/admin/dashboard',
         component: () => import("@/views/admin/Home.vue"),
-        meta: {title: 'Geek-AI 控制台'},
+        meta: {title: 'AI-HOP 控制台'},
         children: [
             {
                 path: '/admin/dashboard',
