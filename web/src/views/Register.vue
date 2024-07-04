@@ -8,7 +8,10 @@
             <el-image :src="logo" fit="cover" @click="router.push('/')"/>
           </div>
 
-          <div class="header">{{ title }}</div>
+          <div class="header">
+            {{ title }}
+            <el-tag v-text="regTxt"></el-tag>
+          </div>
           <div class="content">
             <el-form :model="data" class="form" v-if="enableRegister">
               <el-tabs v-model="activeName" class="demo-tabs">
@@ -185,6 +188,7 @@ import {showMessageError, showMessageOK} from "@/utils/dialog";
 const router = useRouter();
 const title = ref(process.env.VUE_APP_NAME+' 用户注册');
 const logo = ref("/images/logo");
+const regTxt = ref(process.env.VUE_APP_REG_TEXT);
 const data = ref({
   username: '',
   password: '',
