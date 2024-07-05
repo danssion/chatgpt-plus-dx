@@ -224,7 +224,7 @@
 </template>
 
 <script setup>
-import {computed, ref} from "vue"
+import {ref, watch} from "vue"
 import {httpGet, httpPost} from "@/utils/http";
 import {ElMessage} from "element-plus";
 import {setUserToken} from "@/store/session";
@@ -237,8 +237,9 @@ import {arrayContains} from "@/utils/libs";
 const props = defineProps({
   show: Boolean,
 });
-const showDialog = computed(() => {
-  return props.show
+const showDialog = ref(false)
+watch(() => props.show, (newValue) => {
+  showDialog.value = newValue
 })
 
 const login = ref(true)
