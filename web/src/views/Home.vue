@@ -15,20 +15,10 @@
         <el-tooltip
             class="box-item"
             effect="light"
-            content="部署文档"
+            content="文档"
             placement="bottom">
-          <a href="https://ai.r9it.com/docs/install/" class="link-button" target="_blank">
+          <a href="" class="link-button" target="_blank">
             <i class="iconfont icon-book"></i>
-          </a>
-        </el-tooltip>
-
-        <el-tooltip
-            class="box-item"
-            effect="light"
-            content="项目源码"
-            placement="bottom">
-          <a href="https://github.com/yangjian102621/chatgpt-plus" class="link-button" target="_blank">
-            <i class="iconfont icon-github"></i>
           </a>
         </el-tooltip>
 
@@ -47,15 +37,15 @@
 
               <el-dropdown-item>
                 <i class="iconfont icon-book"></i>
-                <a href="https://github.com/yangjian102621/chatgpt-plus" target="_blank">
+                <a href="" target="_blank">
                   用户手册
                 </a>
               </el-dropdown-item>
 
               <el-dropdown-item>
                 <i class="iconfont icon-github"></i>
-                <a href="https://ai.r9it.com/docs/" target="_blank">
-                  Geek-AI {{ version }}
+                <a href="" target="_blank">
+                  AI-HOP {{ version }}
                 </a>
               </el-dropdown-item>
               <el-divider style="margin: 2px 0"/>
