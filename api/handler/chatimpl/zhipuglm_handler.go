@@ -53,8 +53,7 @@ func (h *ChatHandler) sendZhiPuGLMMessage(
 			logger.Error(err)
 		}
 
-		utils.ReplyMessage(ws, ErrorMsg)
-		utils.ReplyMessage(ws, ErrImg)
+		utils.ReplyMessage(ws, err.Error())
 		return err
 	} else {
 		defer response.Body.Close()
