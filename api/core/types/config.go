@@ -155,6 +155,7 @@ type SystemConfig struct {
 	EnabledRegister bool     `json:"enabled_register,omitempty"` // 是否开放注册
 
 	RewardImg     string  `json:"reward_img,omitempty"`     // 众筹收款二维码地址
+	AlipayImg     string  `json:"alipay_img,omitempty"`     // 众筹收款二维码地址
 	EnabledReward bool    `json:"enabled_reward,omitempty"` // 启用众筹功能
 	PowerPrice    float64 `json:"power_price,omitempty"`    // 算力单价
 
