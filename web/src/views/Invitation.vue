@@ -5,10 +5,9 @@
         <h2>会员推广计划</h2>
         <div class="share-box">
           <div class="info">
-            我们非常欢迎您把此应用分享给您身边的朋友，分享成功注册后您将获得 <strong>{{ inviteChatCalls }}</strong>
-            次对话额度以及
-            <strong>{{ inviteImgCalls }}</strong> 次AI绘画额度作为奖励。
+            我们非常欢迎您把此应用分享给您身边的朋友，分享成功注册后您将获得 <strong>{{ inviteChatCalls }}</strong>个算力。
             你可以保存下面的二维码或者直接复制分享您的专属推广链接发送给微信好友。
+            <strong>拉新用户多，可联系客服获取更多算力~！</strong>
           </div>
 
           <div class="invite-qrcode">
@@ -98,8 +97,8 @@ import {checkSession} from "@/action/session";
 import {useSharedStore} from "@/store/sharedata";
 
 const inviteURL = ref("")
-const qrImg = ref("/images/wx.png")
-const inviteChatCalls = ref(0)
+const qrImg = ref("")
+const inviteChatCalls = ref(30)
 const inviteImgCalls = ref(0)
 const hits = ref(0)
 const regNum = ref(0)

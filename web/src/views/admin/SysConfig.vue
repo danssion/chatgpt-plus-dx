@@ -218,8 +218,8 @@
                     <el-input v-model="system['power_price']"
                               placeholder="单位算力的价格，比如设置 0.1 表示捐赠1元钱可以得到10个单位算力"/>
                   </el-form-item>
-                  <el-form-item label="收款二维码" prop="reward_img">
-                    <el-input v-model="system['reward_img']" placeholder="众筹收款二维码地址">
+                  <el-form-item label="微信收款二维码" prop="reward_img">
+                    <el-input v-model="system['reward_img']" placeholder="众筹收款微信二维码地址">
                       <template #append>
                         <el-upload
                             :auto-upload="true"
@@ -234,6 +234,24 @@
                       </template>
                     </el-input>
                   </el-form-item>
+
+                  <el-form-item label="支付宝收款" prop="alipay_img">
+                    <el-input v-model="system['alipay_img']" placeholder="支付宝收款二维码地址">
+                      <template #append>
+                        <el-upload
+                            :auto-upload="true"
+                            :show-file-list="false"
+                            @click="beforeUpload('alipay_img')"
+                            :http-request="uploadImg"
+                        >
+                          <el-icon class="uploader-icon">
+                            <UploadFilled/>
+                          </el-icon>
+                        </el-upload>
+                      </template>
+                    </el-input>
+                  </el-form-item>
+
                 </div>
 
                 <el-form-item label="订单超时时间" prop="order_pay_timeout">
@@ -282,6 +300,7 @@
           </el-form>
         </div>
       </el-tab-pane>
+
       <el-tab-pane label="公告配置" name="notice">
         <md-editor class="mgb20" v-model="notice" @on-upload-img="onUploadImg"/>
         <el-form-item>

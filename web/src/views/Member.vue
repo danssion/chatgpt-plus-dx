@@ -24,6 +24,15 @@
               <el-button type="danger" round @click="logout">退出登录</el-button>
             </el-col>
           </el-row>
+
+          <el-row class="user-opt" :gutter="20">
+            <el-col :span="24" style="padding-top: 30px" >
+              <el-button type="success" round >客服微信</el-button>
+            </el-col>
+            <div class="image-container">
+              <el-image :src="wechatImg" fit="cover"/>
+            </div>
+          </el-row>
         </div>
 
         <div class="product-box">
@@ -34,8 +43,8 @@
           </div>
 
           <ItemList :items="list" v-if="list.length > 0" :gap="15" :width="240">
-            <template #default="scope">
-              <div class="product-item">
+            <template #default="scope" >
+              <div class="product-item" v-if="scope.item.power > 10">
                 <div class="image-container">
                   <el-image :src="vipImg" fit="cover"/>
                 </div>
@@ -81,6 +90,44 @@
               </div>
             </template>
           </ItemList>
+
+
+          <ItemList :items="list" v-if="list.length > 0" :gap="15" :width="240">
+            <template #default="scope" >
+              <div class="product-item" v-if="scope.item.power == 1">
+                <div class="image-container">
+                  <el-image :src="rewardImg" fit="cover"/>
+                </div>
+                <div class="product-title">
+                  <span class="name">{{ scope.item.name }}</span>
+                </div>
+                <div class="product-info">
+                  <div class="info-line">
+                    <span class="">微信赞赏：</span>
+                    <span class="power">支付</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="product-item" v-if="scope.item.power == 2">
+                <div class="image-container">
+                  <el-image :src="alipayImg" fit="cover"/>
+                </div>
+                <div class="product-title">
+                  <span class="name">{{ scope.item.name }}</span>
+                </div>
+                <div class="product-info">
+                  <div class="info-line">
+                    <span class="">支付宝：</span>
+                    <span class="power">支付</span>
+                  </div>
+                </div>
+              </div>
+
+            </template>
+          </ItemList>
+
+
 
           <h2 class="headline">消费账单</h2>
 
@@ -173,6 +220,8 @@ const showPayDialog = ref(false)
 const vipImg = ref("/images/vip.png")
 const enableReward = ref(false) // 是否启用众筹功能
 const rewardImg = ref('/images/reward.png')
+const alipayImg = ref("")
+const wechatImg = ref("")
 const qrcode = ref("")
 const showPasswordDialog = ref(false);
 const showBindMobileDialog = ref(false);
@@ -215,6 +264,7 @@ onMounted(() => {
 
   httpGet("/api/config/get?key=system").then(res => {
     rewardImg.value = res.data['reward_img']
+    alipayImg.value = res.data['alipay_img']
     enableReward.value = res.data['enabled_reward']
     orderPayInfoText.value = res.data['order_pay_info_text']
     if (res.data['order_pay_timeout'] > 0) {
@@ -223,6 +273,7 @@ onMounted(() => {
     vipMonthPower.value = res.data['vip_month_power']
     powerPrice.value = res.data['power_price']
     vipInfoText.value = res.data['vip_info_text']
+    wechatImg.value = res.data['wechat_card_url']
   }).catch(e => {
     ElMessage.error("获取系统配置失败：" + e.message)
   })
